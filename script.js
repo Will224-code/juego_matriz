@@ -88,42 +88,50 @@ function dibujar() {
 }
 
 function mostrarListasHTML() {
-  // Matriz de Adyacencia
-  let adyHTML = `<b>Lista de Adyacencia</b><br><table><tr><th></th>`;
+  // Matriz y lista de adyacencia
+  let adyHTML = `<h3>Matriz de Adyacencia</h3><table><tr><th></th>`;
   for (let i = 0; i < nodos.length; i++) {
     adyHTML += `<th>${String.fromCharCode(65 + i)}</th>`;
   }
   adyHTML += `</tr>`;
-
   for (let i = 0; i < nodos.length; i++) {
     adyHTML += `<tr><th>${String.fromCharCode(65 + i)}</th>`;
     for (let j = 0; j < nodos.length; j++) {
-      const valor = nodos[i].conexiones.includes(j) ? "1" : "0";
-      adyHTML += `<td>${valor}</td>`;
+      adyHTML += `<td>${nodos[i].conexiones.includes(j) ? 1 : 0}</td>`;
     }
     adyHTML += `</tr>`;
   }
-  adyHTML += `</table>`;
+  adyHTML += `</table><h4>Lista de Adyacencia</h4>`;
+  for (let i = 0; i < nodos.length; i++) {
+    const conexiones = nodos[i].conexiones.map(idx => String.fromCharCode(65 + idx)).join(", ");
+    adyHTML += `${String.fromCharCode(65 + i)} → ${conexiones}<br>`;
+  }
   listaAdyacenciaDiv.innerHTML = adyHTML;
 
-  // Matriz de Incidencia
-  let incHTML = `<b>Lista de Incidencia</b><br><table><tr><th></th>`;
+  // Matriz y lista de incidencia
+  let incHTML = `<h3>Matriz de Incidencia</h3><table><tr><th></th>`;
   for (let i = 0; i < aristas.length; i++) {
-    incHTML += `<th>E${i + 1}</th>`;
+    incHTML += `<th>e${i + 1}</th>`;
   }
   incHTML += `</tr>`;
-
   for (let i = 0; i < nodos.length; i++) {
     incHTML += `<tr><th>${String.fromCharCode(65 + i)}</th>`;
     for (let j = 0; j < aristas.length; j++) {
-      const a = nodos.indexOf(aristas[j].a);
-      const b = nodos.indexOf(aristas[j].b);
-      const valor = (i === a || i === b) ? "1" : "0";
+      const { a, b } = aristas[j];
+      const indexNodo = nodos[i];
+      const valor = (a === indexNodo || b === indexNodo) ? 1 : 0;
       incHTML += `<td>${valor}</td>`;
     }
     incHTML += `</tr>`;
   }
-  incHTML += `</table>`;
+  incHTML += `</table><h4>Lista de Incidencia</h4>`;
+  aristas.forEach((arista, idx) => {
+    const indexA = nodos.indexOf(arista.a);
+    const indexB = nodos.indexOf(arista.b);
+    const labelA = String.fromCharCode(65 + indexA);
+    const labelB = String.fromCharCode(65 + indexB);
+    incHTML += `e${idx + 1}: ${labelA} ↔ ${labelB}<br>`;
+  });
   listaIncidenciaDiv.innerHTML = incHTML;
 }
 
