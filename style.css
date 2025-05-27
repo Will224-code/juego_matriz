@@ -1,0 +1,61 @@
+body {
+  margin: 0;
+  font-family: Arial, sans-serif;
+  background: #1e1e1e;
+  color: white;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+
+#canvas {
+  border: 1px solid #444;
+  margin-bottom: 10px;
+  background-color: #2e2e2e;
+}
+
+#controls {
+  margin-bottom: 20px;
+}
+
+button {
+  padding: 10px 20px;
+  font-size: 16px;
+  margin-right: 10px;
+  cursor: pointer;
+  background-color: #007bff;
+  border: none;
+  color: white;
+  border-radius: 5px;
+}
+
+button:hover {
+  background-color: #0056b3;
+}
+
+#mensaje {
+  margin-top: 10px;
+  color: red;
+  font-weight: bold;
+}
+
+#listas {
+  display: flex;
+  gap: 50px;
+  margin: 20px;
+  flex-wrap: wrap;
+  justify-content: center;
+}
+
+#listaAdyacencia table,
+#listaIncidencia table {
+  border-collapse: collapse;
+  margin-top: 10px;
+}
+
+#listaAdyacencia th, #listaAdyacencia td,
+#listaIncidencia th, #listaIncidencia td {
+  border: 1px solid #555;
+  padding: 5px 10px;
+  text-align: center;
+}
